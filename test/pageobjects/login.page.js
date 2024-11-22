@@ -23,6 +23,9 @@ class LoginPage extends Page {
     get loginErrorMessage() {
         return $('[data-test="error"]')
     }
+    get clearErrorMessageBtn(){
+        return $('[data-test="error"] svg')
+    }
 
     /**
      * a method to encapsule automation code to interact with the page
@@ -39,6 +42,9 @@ class LoginPage extends Page {
         await this.btnSubmit.click();
         await this.loginErrorMessage.waitForExist();
         await this.loginErrorMessage.isExisting();
+        await browser.pause(1000);
+        await this.clearErrorMessageBtn.click();
+        await browser.pause(1000);
     }
 
     /**
