@@ -42,9 +42,9 @@ class LoginPage extends Page {
         await this.btnSubmit.click();
         await this.loginErrorMessage.waitForExist();
         await this.loginErrorMessage.isExisting();
-        await browser.pause(1000);
+        await browser.pause(5000);
         await this.clearErrorMessageBtn.click();
-        await browser.pause(1000);
+        await browser.pause(5000);
     }
 
     /**

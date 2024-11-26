@@ -14,13 +14,20 @@ class ProductPage extends Page {
     get cartBtn(){
         return $('[data-icon="shopping-cart"]')
     }
+    get itemPrice(){
+        return $$('.inventory_item_price')
+    }
 
     async AddBackpackAndJacketToCart(){
         await this.addToCartBtn[0].click();
-        await browser.pause(1000);
+        await browser.pause(3000);
         await this.addToCartBtn[3].scrollIntoView();
         await this.addToCartBtn[3].click();
-        await browser.pause(1000);
+        await browser.pause(3000);
+        let backpackPrice = await this.itemPrice[0].getText();
+        let jacketPrice = await this.itemPrice[3].getText();
+        let itemPrices = [backpackPrice, jacketPrice];
+        return itemPrices;
     }
     async GoToCart(){
         await this.cartBtn.click();

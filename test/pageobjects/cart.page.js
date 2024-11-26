@@ -15,12 +15,16 @@ class CartPage extends Page {
         return $('a.checkout_button')
     }
 
-    async VerifyCartPage(){
+    async VerifyCartPage(itemPrices){
         let cartHeader = await this.cartHeader
         await expect(cartHeader).toHaveText('Your Cart')
         await browser.pause(1000);
+        for(let i = 0; i < itemPrices.length; i++){
+            console.log(`Price of item ${i+1}: ${itemPrices[i]}`)
+        }
     }
     async CheckoutFromCartPage(){
+        await this.checkoutBtn.waitForClickable();
         await this.checkoutBtn.click();
     }
 }

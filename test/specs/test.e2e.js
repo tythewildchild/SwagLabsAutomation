@@ -2,6 +2,7 @@ import { expect } from '@wdio/globals'
 import LoginPage from '../pageobjects/login.page.js'
 import ProductPage from '../pageobjects/product.page.js'
 import CartPage from '../pageobjects/cart.page.js'
+import CheckoutPage from '../pageobjects/checkout.page.js'
 
 describe('My Login application', () => {
     it('should login with valid credentials', async () => {
@@ -10,10 +11,16 @@ describe('My Login application', () => {
         await LoginPage.login('standard_user', 'secret_sauce')
     })
     it('should add a backpack and fleece jacket to the cart', async () => {
-        await ProductPage.AddBackpackAndJacketToCart();
+        let itemPrices = await ProductPage.AddBackpackAndJacketToCart();
         await ProductPage.GoToCart();
-        await CartPage.VerifyCartPage();
-        await browser.pause(300000);
+        await CartPage.VerifyCartPage(itemPrices);
     })
+
+    it('should checkout the backpack and jacket', async () => {
+        await CartPage.CheckoutFromCartPage();
+        await CheckoutPage.CheckoutFirstPage();
+        await CheckoutPage.CheckoutSecondPage();
+    })
+
 })
 
