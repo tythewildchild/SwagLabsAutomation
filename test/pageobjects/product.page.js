@@ -17,7 +17,10 @@ class ProductPage extends Page {
 
     async AddBackpackAndJacketToCart(){
         await this.addToCartBtn[0].click();
+        await browser.pause(1000);
+        await this.addToCartBtn[3].scrollIntoView();
         await this.addToCartBtn[3].click();
+        await browser.pause(1000);
     }
     async GoToCart(){
         await this.cartBtn.click();

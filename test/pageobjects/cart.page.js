@@ -18,6 +18,7 @@ class CartPage extends Page {
     async VerifyCartPage(){
         let cartHeader = await this.cartHeader
         await expect(cartHeader).toHaveText('Your Cart')
+        await browser.pause(1000);
     }
     async CheckoutFromCartPage(){
         await this.checkoutBtn.click();
